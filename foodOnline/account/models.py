@@ -83,5 +83,22 @@ class User(AbstractBaseUser):
     
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='users/profile_pictures', null=True, blank=True)
+    cover_photo = models.ImageField(upload_to='users/cover_photos', null=True, blank=True)
+    address_line_1 = models.CharField(max_length=50, null=True, blank=True)
+    address_line_2 = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=20, null=True, blank=True)
+    state = models.CharField(max_length=20, null=True, blank=True)
+    city = models.CharField(max_length=20, null=True, blank=True)
+    pincode = models.CharField(max_length=6, null=True, blank=True)
+    lattitude = models.CharField(max_length=20, null=True, blank=True)
+    longitude = models.CharField(max_length=20, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.email
 
 
